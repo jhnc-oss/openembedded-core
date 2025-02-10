@@ -22,7 +22,7 @@ RDEPENDS:${PN} += "\
 
 BBCLASSEXTEND = "native nativesdk"
 
-do_install_ptest() {
+do_install_ptest:append() {
     install -d ${D}${PTEST_PATH}/src
     cp -rf ${S}/src/* ${D}${PTEST_PATH}/src/
     cp -rf ${S}/setup.cfg ${D}${PTEST_PATH}/
