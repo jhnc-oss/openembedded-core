@@ -175,11 +175,15 @@ def gitarchive(data_dir, git_dir, no_create, bare, commit_msg_subject, commit_ms
     commit_msg += '\n\n' + format_str(commit_msg_body, keywords)
     branch_name = format_str(branch_name, keywords)
     tag_name = None
+
+    # push is either a boolean or a git remote URL string
+    push_url = push if isinstance(push, str) else None
+
     if not no_tag and tagname:
         tag_name, tag_msg = expand_tag_strings(data_repo, tagname,
                                                tag_msg_subject,
                                                tag_msg_body,
-                                               push, log, keywords)
+                                               push_url, log, keywords)
 
     # Commit data
     commit = git_commit_data(data_repo, data_dir, branch_name,
