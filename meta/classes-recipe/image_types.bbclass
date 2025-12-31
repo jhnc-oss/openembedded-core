@@ -92,8 +92,14 @@ oe_mkext234fs () {
 	bbdebug 1 "Actual Partition size: `stat -c '%s' ${IMGDEPLOYDIR}/${IMAGE_NAME}.$fstype`"
 	bbdebug 1 Executing "mkfs.$fstype -F $extra_imagecmd ${IMGDEPLOYDIR}/${IMAGE_NAME}.$fstype -d ${IMAGE_ROOTFS}"
 	mkfs.$fstype -F $extra_imagecmd ${IMGDEPLOYDIR}/${IMAGE_NAME}.$fstype -d ${IMAGE_ROOTFS}
-	# Error codes 0-3 indicate successfull operation of fsck (no errors or errors corrected)
-	fsck.$fstype -pvfD ${IMGDEPLOYDIR}/${IMAGE_NAME}.$fstype || [ $? -le 3 ]
+
+	if [ '${RUN_FSCK}' = "0" ]; then
+		bbdebug 1 "Skipping fsck for reduced image delta"
+	else
+		bbdebug 1 "Running fsck on image"
+		# Error codes 0-3 indicate successful operation of fsck (no errors or errors corrected)
+		fsck.$fstype -pvfD ${IMGDEPLOYDIR}/${IMAGE_NAME}.$fstype || [ $? -le 3 ]
+	fi
 }
 
 IMAGE_CMD:ext2 = "oe_mkext234fs ext2 ${EXTRA_IMAGECMD}"
