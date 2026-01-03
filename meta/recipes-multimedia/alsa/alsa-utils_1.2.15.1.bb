@@ -27,12 +27,6 @@ PACKAGECONFIG[manpages] = "--enable-xmlto, --disable-xmlto, xmlto-native docbook
 SRC_URI = "https://www.alsa-project.org/files/pub/utils/alsa-utils-${PV}.tar.bz2"
 SRC_URI[sha256sum] = "5ad79f349e59c30c9a4929ad4995ebee33267473e0e632d7c1a30e2b093d3327"
 
-# On build machines with python-docutils (not python3-docutils !!) installed
-# rst2man (not rst2man.py) is detected and compile fails with
-# | make[1]: *** No rule to make target 'alsaucm.1', needed by 'all-am'.  Stop.
-# Avoid this by disabling expicitly
-EXTRA_OECONF = "--disable-rst2man"
-
 inherit autotools gettext pkgconfig manpages
 
 # This are all packages that we need to make. Also, the now empty alsa-utils
