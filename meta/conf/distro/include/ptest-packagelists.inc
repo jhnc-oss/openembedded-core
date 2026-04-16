@@ -132,6 +132,7 @@ PTESTS_SLOW = "\
     libmodule-build-perl \
     libpng \
     ${@bb.utils.contains('DISTRO_FEATURES', 'seccomp', 'libseccomp', '',d)} \
+    libsamplerate0 \
     lttng-tools \
     lz4 \
     openssh \
