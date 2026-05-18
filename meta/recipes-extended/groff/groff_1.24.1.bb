@@ -20,7 +20,7 @@ SRC_URI[sha256sum] = "74e2819795b6aff431aeac983d63a9c8968eeaba2a2eba7df8ba4c7b41
 DEPENDS = "bison-native groff-native"
 RDEPENDS:${PN} += "perl sed"
 
-inherit autotools-brokensep texinfo multilib_script pkgconfig
+inherit autotools texinfo multilib_script pkgconfig
 
 MULTILIB_SCRIPTS = "${PN}:${bindir}/gpinyin ${PN}:${bindir}/grog"
 
