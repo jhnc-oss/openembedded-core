@@ -19,6 +19,4 @@ inherit autotools-brokensep
 
 BBCLASSEXTEND = "native"
 
-DEPENDS = "groff-native"
-
 CVE_PRODUCT = "netwide_assembler"
