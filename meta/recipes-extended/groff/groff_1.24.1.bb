@@ -65,8 +65,10 @@ do_install:append() {
 	rm -rf ${D}${bindir}/grap2graph
 	rm -rf ${D}${mandir}/man1/grap2graph*
 
-        # strip hosttool path out of generated files
-        sed -i -e 's:${HOSTTOOLS_DIR}/::g' ${D}${docdir}/${BP}/examples/hdtbl/*.roff
+	# strip hosttool path out of generated files
+	if [ -d ${D}${docdir}/${BP}/examples/hdtbl/ ]; then
+		sed -i -e 's:${HOSTTOOLS_DIR}/::g' ${D}${docdir}/${BP}/examples/hdtbl/*.roff
+	fi
 }
 
 do_install:append:class-native() {
